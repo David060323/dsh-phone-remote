@@ -20,8 +20,8 @@ Repo: <https://github.com/David060323/dsh-phone-remote>
 # 1) remote access plugin (CLI-managed profile)
 dsh plugin --profile web add @linxin666/dsh-remote-web-ui@latest
 
-# 2) the iOS fix plugin
-dsh plugin --profile web add link:<repo>\dsh-phone-home
+# 2) the iOS fix plugin (the repository root is the plugin package)
+dsh plugin --profile web add github:David060323/dsh-phone-remote
 
 # 3) append to %USERPROFILE%\.dsh\profiles\web\cordis.patch.yml
 #    - id: remote-web-ui

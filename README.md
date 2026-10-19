@@ -59,8 +59,9 @@
 # 1) 安装远程访问插件（官方 CLI）
 dsh plugin --profile web add @linxin666/dsh-remote-web-ui@latest
 
-# 2) 安装本仓库的 iOS 修复插件
-dsh plugin --profile web add link:<本仓库路径>\dsh-phone-home
+# 2) 安装本仓库的 iOS 修复插件（仓库根就是插件包，可直接从 GitHub 安装；国内网络也可先 clone 再用 link:）
+dsh plugin --profile web add github:David060323/dsh-phone-remote
+#   离线/内网：git clone 后 → dsh plugin --profile web add link:<clone路径>
 
 # 3) 编辑 %USERPROFILE%\.dsh\profiles\web\cordis.patch.yml，追加：
 #    - id: remote-web-ui
@@ -83,7 +84,7 @@ dsh web
 
 > 桌面版 profile 由 Electron 管理，不能用 `dsh plugin` CLI 直接装；以下步骤需要能调用 `plugin_manager` 的 Agent 协助（或手动编辑 profile）。
 
-1. 把 `@linxin666/dsh-remote-web-ui` 和本仓库 `dsh-phone-home` 装进 profile `desktop`（bundle 列表里追加，`dependencies` 用 `link:`）；
+1. 把 `@linxin666/dsh-remote-web-ui` 和本仓库的插件包（仓库根，包名 `dsh-phone-home`）装进 profile `desktop`（bundle 列表里追加，`dependencies` 用 `link:` 指向 clone 下来的仓库根）；
 2. 在 `~/.dsh/profiles/desktop/cordis.patch.yml` 追加与方案 A 相同的配置块；
 3. 用 `scripts/register-desktop-watchdog.ps1` 注册桌面版守护任务（登录自启 + 1 分钟自愈）；
 4. 配对流程同上。
@@ -136,7 +137,7 @@ iOS 主屏 Web App 按页面所链 manifest 的 `start_url` 启动。官方 mani
 ## 文件说明
 
 ```
-dsh-phone-home/           iOS 主屏修复插件（manifest start_url + 图标）
+package.json / cordis.patch.yml / lib/ / assets/   iOS 主屏修复插件（仓库根即插件包：manifest start_url + 图标）
 scripts/                  常驻/守护脚本（Windows PowerShell）
 docs/ARCHITECTURE.md      架构与实现细节
 docs/TROUBLESHOOTING.md   排错手册
