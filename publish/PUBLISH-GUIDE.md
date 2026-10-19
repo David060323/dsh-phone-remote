@@ -2,6 +2,25 @@
 
 这套东西的目标是「躺平型」：做好一次，之后不需要持续维护。按投入从低到高：
 
+## 当前状态（2026-10-19）
+
+- 仓库已发布：<https://github.com/David060323/dsh-phone-remote>（public；插件包已挪到仓库根，可 `dsh plugin add github:...` 安装）
+- 已向官方精选目录提交收录 PR：<https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/8081>
+- 文章现成稿：`publish/ARTICLE-zhihu.md`（尚未发布，复制粘贴一次即可）
+
+## 维护 / 更新（重要）
+
+这台机器的网络**直连 github.com 的 git 会 connection reset**（全局 git 配置把 github.com 重写到了 ghfast.top 镜像，push 会失败），而 `api.github.com` 是通的。所以更新仓库用 API 同步，**不要直接 `git push`**：
+
+```powershell
+# 改完本地文件后（本机路径）
+powershell -NoProfile -File D:\cosserat_project\dsh-mobile\publish\sync-via-api.ps1 `
+  -RepoDir D:\cosserat_project\dsh-mobile\publish\dsh-phone-remote
+```
+
+脚本按内容 diff 出新增/修改/删除，用 GitHub Git Data API 提交一次 commit 并移动 `main` 分支；本地 `.git` 历史与远端不完全一致，属正常（远端提交由 API 产生）。
+
+## 发布选项（按被动程度从高到低）
 ## 1) GitHub 开源仓库（推荐，最省心）
 
 1. 在 GitHub 新建空仓库 `dsh-phone-remote`（Public）；
