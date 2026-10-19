@@ -1,0 +1,4 @@
+# dsh-phone-home — insert one loader entry for the PWA manifest override plugin.
+- insert:
+    - id: phone-home-pwa
+      name: 'dsh-phone-home'

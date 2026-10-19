@@ -1,0 +1,33 @@
+{
+  "name": "dsh-phone-home",
+  "version": "0.1.0",
+  "description": "iOS 主屏 App 修复插件：把 PWA manifest 的 start_url 指向 /pair-app（不依赖 Service Worker 也能进入），并提供主屏图标资源。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/**/*.js",
+    "assets/**",
+    "cordis.patch.yml",
+    "package.json"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "engines": {
+      "dsh": ">=0.2.1-rc.2"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/David060323/dsh-phone-remote.git"
+  }
+}

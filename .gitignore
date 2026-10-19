@@ -1,0 +1,7 @@
+# logs / local state
+*.log
+*.tmp
+.DS_Store
+
+# node_modules if the plugin is developed in place
+node_modules/
